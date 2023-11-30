@@ -9,8 +9,10 @@
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
     systems = [ "x86_64-linux" "aarch64-linux" ];
-    perSystem = { pkgs, ... }: {
+    perSystem = { config, pkgs, ... }: {
       packages.default = pkgs.testers.runNixOSTest ./test.nix;
+
+      checks = config.packages;
     };
   };
 }
