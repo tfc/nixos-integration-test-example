@@ -8,14 +8,7 @@
     machine2 = { pkgs, ... }: { };
   };
 
-  interactive.nodes.machine1 = { ... }: {
-    services.openssh.enable = true;
-    services.openssh.settings.PermitRootLogin = "yes";
-    users.extraUsers.root.initialPassword = "";
-    virtualisation.forwardPorts = [
-      { from = "host"; host.port = 2222; guest.port = 22; }
-    ];
-  };
+  interactive.nodes.machine1 = import ./debug-host-module.nix;
 
   testScript = ''
     machine1.wait_for_unit("network-online.target")

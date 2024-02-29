@@ -11,6 +11,7 @@
     systems = [ "x86_64-linux" "aarch64-linux" ];
     perSystem = { config, pkgs, ... }: {
       packages.default = pkgs.testers.runNixOSTest ./test.nix;
+      packages.echo = pkgs.testers.runNixOSTest ./echo/test.nix;
 
       checks = config.packages;
     };
