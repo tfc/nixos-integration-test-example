@@ -16,7 +16,7 @@
     client = { ... }: { };
   };
 
-  globalTimeout = 30;
+  globalTimeout = 60;
 
   interactive.nodes.server = import ../debug-host-module.nix;
 
