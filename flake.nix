@@ -13,7 +13,11 @@
       packages.default = pkgs.testers.runNixOSTest ./test.nix;
       packages.echo = pkgs.testers.runNixOSTest ./echo/test.nix;
 
-      checks = config.packages;
+      checks = {
+        inherit (config.packages) default echo;
+        default-interactive = config.packages.default.driverInteractive;
+        echo-interactive = config.packages.echo.driverInteractive;
+      };
     };
   };
 }
